@@ -74,6 +74,39 @@ var search = function(nums, target) {
     return left;
 };
 
+
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number}
+ */
+var search = function(nums, target) {
+    let left = 0, right = nums.length - 1, mid = 0;
+    while(left <= right) {
+        mid = Math.floor(left + (right - left) / 2)
+        if (nums[mid] === target) {
+            return mid
+        }
+        if (nums[mid] >= nums[left]) {
+            if (target >= nums[left] && target < nums[mid]) {
+                right = mid - 1
+            } else {
+                left = mid + 1
+            }
+        } else {
+            if (target > nums[mid] && target <= nums[right]) {
+                left = mid + 1
+            } else {
+                right = mid - 1
+            }
+        }
+    }
+    return -1
+}
+
+// console.log(search([4,5,6,7,0,1,2],
+//     0))
+
 console.log(search(
-    [278,280,281,286,287,290,2,3,4,8,9,14,15,16,21,24,25,31,32,34,36,37,42,45,51,52,54,55,60,63,66,68,69,71,76,81,83,84,85,86,87,94,97,99,106,107,110,113,114,115,118,120,121,125,134,136,137,138,142,143,147,150,152,159,160,161,165,166,174,176,178,186,187,189,190,191,195,196,198,204,212,216,217,220,221,222,225,227,229,232,237,239,242,245,251,263,264,274,275,276,277],
-286))
+    [1],
+1))
